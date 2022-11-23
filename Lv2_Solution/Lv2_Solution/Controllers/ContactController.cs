@@ -1,4 +1,5 @@
 ﻿using Lv2_Solution.Models;
+using Lv2_Solution.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,22 +11,17 @@ namespace Lv2_Solution.Controllers
 {
     public class ContactController : ApiController
     {
+        private ContactRepository contactRepository;
+
+        public ContactController()
+        {
+            this.contactRepository = new ContactRepository();
+        }
+
         // GET: Contact
         public Contact[] Get()
         {
-        return new Contact[]
-        {
-            new Contact
-            {
-                Id = 1,
-                Name = "Glenn Block"
-            },
-            new Contact
-            {
-                Id = 2,
-                Name = "Dan Roth"
-            }
-        };
+            return this.contactRepository.GetAllContacts();
         }
     }
 }
